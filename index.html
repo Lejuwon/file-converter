@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>파일 형식 변환기</title>
+  <link rel="icon" href="app-icon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- 헤더 -->
+    <header class="header">
+      <img src="gilgroup-logo.png" alt="길그룹 로고" class="logo" />
+      <div class="header-text">
+        <h1>파일 형식 변환기</h1>
+        <p class="subtitle">이미지 · 한글 · 엑셀 파일을 원하는 형식으로 변환합니다</p>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <!-- 저장 폴더 -->
+      <section class="card folder-bar" aria-label="저장 폴더">
+        <div class="folder-left">
+          <span class="folder-icon">📁</span>
+          <p class="folder-status" id="folderStatus">저장 위치 미설정 — 변환 완료 시 기본 다운로드 폴더로 저장됩니다</p>
+        </div>
+        <div class="folder-actions">
+          <button type="button" class="btn" id="btnPickFolder">폴더 선택</button>
+          <button type="button" class="btn btn-ghost" id="btnClearFolder">해제</button>
+        </div>
+      </section>
+
+      <!-- ① 파일 업로드 -->
+      <section class="card upload-section">
+        <p class="section-label">① 파일 올리기</p>
+        <div
+          class="dropzone"
+          id="dropzone"
+          tabindex="0"
+          role="button"
+          aria-label="파일을 여기에 놓거나 클릭하여 선택"
+        >
+          <input type="file" id="fileInput" multiple hidden accept="image/*,.pdf,.hwp,.hwpx,.xlsx,.xls,.xlsm,.xlsb,.csv,.ods" />
+          <div class="dropzone-inner">
+            <span class="dropzone-icon" aria-hidden="true">⬆</span>
+            <p class="dropzone-title">파일을 끌어다 놓거나 클릭하여 선택</p>
+            <p class="dropzone-hint">이미지 · PDF · 한글(HWP/HWPX) · 엑셀(xlsx, xls 등)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 파일 올린 후 동적으로 표시되는 변환 섹션 -->
+      <section class="card convert-section" id="convertSection" style="display:none">
+        <p class="section-label">② 출력 형식 선택 후 변환</p>
+        <div id="filePreviewList" class="file-preview-list"></div>
+        <div class="convert-bottom">
+          <select class="fmt-select fmt-select-large" id="select-format" name="out-format"></select>
+          <button type="button" class="btn btn-convert" id="btnConvert">변환하기</button>
+          <button type="button" class="btn btn-ghost btn-cancel" id="btnCancel">취소</button>
+        </div>
+      </section>
+
+      <!-- 로그 -->
+      <section class="log" id="log" aria-live="polite"></section>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hwp.js@latest/dist/hwp.min.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>

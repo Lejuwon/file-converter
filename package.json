@@ -1,0 +1,41 @@
+{
+  "name": "file-converter",
+  "version": "1.0.0",
+  "description": "길건축 파일 형식 변환기",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "com.gilgroup.fileconverter",
+    "productName": "파일 형식 변환기",
+    "win": {
+      "target": "nsis",
+      "icon": "app-icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "app-icon.ico",
+      "installerHeaderIcon": "app-icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "파일 형식 변환기"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "script.js",
+      "styles.css",
+      "app-icon.ico",
+      "gilgroup-logo.png",
+      "package.json"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^25.7.0",
+    "electron-builder": "^24.0.0"
+  }
+}
